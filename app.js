@@ -1,6 +1,44 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbz6-BoX9yVXRfupfLQdfPU0A7WWQ_jiTDuANemotZi9NRxn5ijx2HKsc4nc_GBV38Fh/exec";
+const API_URL="https://script.google.com/macros/s/AKfycbz6-BoX9yVXRfupfLQdfPU0A7WWQ_jiTDuANemotZi9NRxn5ijx2HKsc4nc_GBV38Fh/exec";
 
-let devices = [];
+let devices=[];
+
+window.onload=function(){
+
+loadRecords();
+
+};
+
+function loadRecords(){
+
+fetch(API_URL)
+.then(res=>res.json())
+.then(data=>{
+
+devices=[];
+
+data.forEach(r=>{
+
+devices.push({
+
+id:r[0],
+patient:r[1],
+civil:r[2],
+phone:r[3],
+sentBy:r[4],
+receivedBy:r[5],
+deliverDate:r[6],
+returnDate:r[7],
+status:r[8]
+
+});
+
+});
+
+renderTable();
+
+});
+
+}
 
 function deliverDevice(){
 
@@ -18,29 +56,23 @@ status:"With Patient"
 
 };
 
-const data={
-
+fetch(API_URL,{
+method:"POST",
+body:JSON.stringify({
 deviceId:device.id,
 patientName:device.patient,
 civilId:device.civil,
 phone:device.phone,
 sentBy:device.sentBy,
 deliverDate:device.deliverDate
-
-};
-
-fetch(API_URL,{
-method:"POST",
-body:JSON.stringify(data)
+})
 })
 .then(res=>res.text())
 .then(res=>{
-alert("Saved successfully");
+
+loadRecords();
+
 });
-
-devices.push(device);
-
-renderTable();
 
 }
 
@@ -116,49 +148,6 @@ row.innerHTML=`
 <td>${d.patient}</td>
 <td>${d.civil}</td>
 <td>${d.phone}</td>
-<td>${d.sentBy}</td>
-<td>${d.receivedBy}</td>
-<td>${d.deliverDate}</td>
-<td>${d.returnDate}</td>
-<td>${getStatusText(d.status)}</td>
-
-`;
-
-table.appendChild(row);
-
-});
-
-updateStats();
-
-}
-
-function updateStats(){
-
-let total=devices.length;
-
-let returned=devices.filter(d=>d.status==="Returned").length;
-
-let withPatients=devices.filter(d=>d.status==="With Patient").length;
-
-document.getElementById("total").innerText=total;
-document.getElementById("returned").innerText=returned;
-document.getElementById("withPatients").innerText=withPatients;
-
-}
-
-function searchDevice(){
-
-let text=searchBox.value.toLowerCase();
-
-let rows=document.querySelectorAll("#records tr");
-
-rows.forEach(r=>{
-
-r.style.display=r.innerText.toLowerCase().includes(text)?"":"none";
-
-});
-
-}<td>${d.phone}</td>
 <td>${d.sentBy}</td>
 <td>${d.receivedBy}</td>
 <td>${d.deliverDate}</td>
