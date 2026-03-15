@@ -2,17 +2,26 @@ let devices = [];
 
 function deliverDevice(){
 
-let device={
+const data={
 
-id:deviceId.value,
-patient:patientName.value,
-civil:civilId.value,
+deviceId:deviceId.value,
+patientName:patientName.value,
+civilId:civilId.value,
 phone:phone.value,
 sentBy:sentBy.value,
-receivedBy:"",
-deliverDate:deliverDate.value,
-returnDate:"",
-status:"With Patient"
+deliverDate:deliverDate.value
+
+};
+
+fetch(https:script.google.com/macros/s/AKfycbz6-BoX9yVXRfupfLQdfPU0A7WWQ_jiTDuANemotZi9NRxn5ijx2HKsc4nc_GBV38Fh/exec),{
+
+method:"POST",
+
+body:JSON.stringify(data)
+
+})
+.then(res=>res.text())
+.then(data=>alert("Saved successfully"))
 
 };
 
