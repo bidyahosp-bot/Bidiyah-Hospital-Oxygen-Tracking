@@ -1,29 +1,42 @@
+const API_URL = "https://script.google.com/macros/s/AKfycbz6-BoX9yVXRfupfLQdfPU0A7WWQ_jiTDuANemotZi9NRxn5ijx2HKsc4nc_GBV38Fh/exec";
+
 let devices = [];
 
 function deliverDevice(){
 
-const data={
+let device={
 
-deviceId:deviceId.value,
-patientName:patientName.value,
-civilId:civilId.value,
+id:deviceId.value,
+patient:patientName.value,
+civil:civilId.value,
 phone:phone.value,
 sentBy:sentBy.value,
-deliverDate:deliverDate.value
+receivedBy:"",
+deliverDate:deliverDate.value,
+returnDate:"",
+status:"With Patient"
 
 };
 
-fetch(https:script.google.com/macros/s/AKfycbz6-BoX9yVXRfupfLQdfPU0A7WWQ_jiTDuANemotZi9NRxn5ijx2HKsc4nc_GBV38Fh/exec),{
+const data={
 
+deviceId:device.id,
+patientName:device.patient,
+civilId:device.civil,
+phone:device.phone,
+sentBy:device.sentBy,
+deliverDate:device.deliverDate
+
+};
+
+fetch(API_URL,{
 method:"POST",
-
 body:JSON.stringify(data)
-
 })
 .then(res=>res.text())
-.then(data=>alert("Saved successfully"))
-
-};
+.then(res=>{
+alert("Saved successfully");
+});
 
 devices.push(device);
 
@@ -103,6 +116,49 @@ row.innerHTML=`
 <td>${d.patient}</td>
 <td>${d.civil}</td>
 <td>${d.phone}</td>
+<td>${d.sentBy}</td>
+<td>${d.receivedBy}</td>
+<td>${d.deliverDate}</td>
+<td>${d.returnDate}</td>
+<td>${getStatusText(d.status)}</td>
+
+`;
+
+table.appendChild(row);
+
+});
+
+updateStats();
+
+}
+
+function updateStats(){
+
+let total=devices.length;
+
+let returned=devices.filter(d=>d.status==="Returned").length;
+
+let withPatients=devices.filter(d=>d.status==="With Patient").length;
+
+document.getElementById("total").innerText=total;
+document.getElementById("returned").innerText=returned;
+document.getElementById("withPatients").innerText=withPatients;
+
+}
+
+function searchDevice(){
+
+let text=searchBox.value.toLowerCase();
+
+let rows=document.querySelectorAll("#records tr");
+
+rows.forEach(r=>{
+
+r.style.display=r.innerText.toLowerCase().includes(text)?"":"none";
+
+});
+
+}<td>${d.phone}</td>
 <td>${d.sentBy}</td>
 <td>${d.receivedBy}</td>
 <td>${d.deliverDate}</td>
