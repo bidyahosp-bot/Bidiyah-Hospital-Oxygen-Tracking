@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Bidiyah Hospital Oxygen Tracking</title>
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<style>
+
+body{
+background:#f2f6fb;
+font-family:Arial;
+}
+
+.header{
+background:#0a4fa3;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.logo{
+width:110px;
+}
+
+.oxygen{
+width:220px;
+margin-top:20px;
+}
+
+.card-stat{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.overdue{
+background:#ffe5e5;
+}
+
+footer{
+text-align:center;
+margin-top:40px;
+padding:20px;
+color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<img src="logo.png" class="logo">
+
+<h3>
+Bidiyah Hospital — مستشفى بدية
+</h3>
+
+<p>
+Oxygen Devices Tracking System
+<br>
+نظام متابعة أجهزة الأكسجين للمرضى
+</p>
+
+</div>
+
+<div style="text-align:center">
+<img src="oxygen.png" class="oxygen">
+</div>
+
+<div class="container mt-4">
+
+<div class="row">
+
+<div class="col-md-4">
+<div class="card-stat">
+<h5>Devices with Patients<br>الأجهزة مع المرضى</h5>
+<h2 id="withPatients">0</h2>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card-stat">
+<h5>Returned Devices<br>الأجهزة المرتجعة</h5>
+<h2 id="returned">0</h2>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card-stat">
+<h5>Total Records<br>إجمالي السجلات</h5>
+<h2 id="total">0</h2>
+</div>
+</div>
+
+</div>
+
+<hr>
+
+<h4>
+Deliver Oxygen Device
+<br>
+تسليم جهاز الأكسجين
+</h4>
+
+<input id="deviceId"
+class="form-control mb-2"
+placeholder="Device ID / رقم الجهاز">
+
+<input id="patientName"
+class="form-control mb-2"
+placeholder="Patient Name / اسم المريض">
+
+<input id="civilId"
+class="form-control mb-2"
+placeholder="Civil ID / الرقم المدني">
+
+<input id="phone"
+class="form-control mb-2"
+placeholder="Phone Number / رقم الهاتف">
+
+<input id="sentBy"
+class="form-control mb-2"
+placeholder="Sent By (Staff) / الموظف المسلم">
+
+<input id="deliverDate"
+type="date"
+class="form-control mb-3">
+
+<button onclick="deliverDevice()"
+class="btn btn-primary">
+
+Deliver Device / تسليم
+
+</button>
+
+<hr>
+
+<h4>
+Return Oxygen Device
+<br>
+إرجاع جهاز الأكسجين
+</h4>
+
+<input id="returnDeviceId"
+class="form-control mb-2"
+placeholder="Device ID / رقم الجهاز">
+
+<input id="receivedBy"
+class="form-control mb-2"
+placeholder="Received By (Staff) / الموظف المستلم">
+
+<input id="returnDate"
+type="date"
+class="form-control mb-3">
+
+<button onclick="returnDevice()"
+class="btn btn-success">
+
+Return Device / إرجاع
+
+</button>
+
+<hr>
+
+<h4>
+Search Device
+<br>
+بحث برقم الجهاز
+</h4>
+
+<input id="searchBox"
+onkeyup="searchDevice()"
+class="form-control"
+placeholder="Search / بحث">
+
+<hr>
+
+<table class="table table-bordered">
+
+<thead>
+
+<tr>
+
+<th>Device ID<br>رقم الجهاز</th>
+<th>Patient Name<br>اسم المريض</th>
+<th>Civil ID<br>الرقم المدني</th>
+<th>Phone<br>الهاتف</th>
+<th>Sent By<br>الموظف المسلم</th>
+<th>Received By<br>الموظف المستلم</th>
+<th>Deliver Date<br>تاريخ التسليم</th>
+<th>Return Date<br>تاريخ الإرجاع</th>
+<th>Status<br>الحالة</th>
+
+</tr>
+
+</thead>
+
+<tbody id="records"></tbody>
+
+</table>
+
+</div>
+
+<footer>
+
+© Bidiyah Hospital  
+<br>
+by Jouharah.IT.
+
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
