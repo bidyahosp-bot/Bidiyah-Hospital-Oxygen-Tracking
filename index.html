@@ -113,37 +113,27 @@ Deliver Oxygen Device
 تسليم جهاز الأكسجين
 </h4>
 
-<input id="deviceId"
-class="form-control mb-2"
-placeholder="Device ID / رقم الجهاز">
-
-<input id="patientName"
-class="form-control mb-2"
+<input id="patientName" class="form-control mb-2"
 placeholder="Patient Name / اسم المريض">
 
-<input id="civilId"
-class="form-control mb-2"
+<input id="civilId" class="form-control mb-2"
 placeholder="Civil ID / الرقم المدني">
 
-<input id="phone"
-class="form-control mb-2"
+<input id="phone" class="form-control mb-2"
 placeholder="Phone Number / رقم الهاتف">
 
-<input id="sentBy"
-class="form-control mb-2"
-placeholder="Sent By (Staff) / الموظف المسلم">
+<input id="sentBy" class="form-control mb-2"
+placeholder="Sent By / الموظف المسلم">
 
-<input id="deliverDate"
-type="date"
+<input id="deliverDate" type="date"
 class="form-control mb-3">
 
 <button onclick="deliverDevice()"
 class="btn btn-primary">
 
-Deliver Device / تسليم
+Deliver / تسليم
 
 </button>
-
 <hr>
 
 <h4>
@@ -152,13 +142,13 @@ Return Oxygen Device
 إرجاع جهاز الأكسجين
 </h4>
 
-<input id="returnDeviceId"
+<input id="civilSearch"
 class="form-control mb-2"
-placeholder="Device ID / رقم الجهاز">
+placeholder="Civil ID / الرقم المدني">
 
 <input id="receivedBy"
 class="form-control mb-2"
-placeholder="Received By (Staff) / الموظف المستلم">
+placeholder="Received By / الموظف المستلم">
 
 <input id="returnDate"
 type="date"
@@ -167,22 +157,22 @@ class="form-control mb-3">
 <button onclick="returnDevice()"
 class="btn btn-success">
 
-Return Device / إرجاع
+Return / إرجاع
 
 </button>
 
 <hr>
 
 <h4>
-Search Device
+Search 
 <br>
-بحث برقم الجهاز
+بحث
 </h4>
 
 <input id="searchBox"
 onkeyup="searchDevice()"
 class="form-control"
-placeholder="Search / بحث">
+placeholder="Search (Civil ID / Name / Phone) / بحث (الرقم المدني / الاسم / الهاتف)">
 
 <hr>
 
@@ -192,7 +182,6 @@ placeholder="Search / بحث">
 
 <tr>
 
-<th>Device ID<br>رقم الجهاز</th>
 <th>Patient Name<br>اسم المريض</th>
 <th>Civil ID<br>الرقم المدني</th>
 <th>Phone<br>الهاتف</th>
