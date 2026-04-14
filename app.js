@@ -74,7 +74,7 @@ let returnDate = document.getElementById("returnDate").value;
 let receivedBy = document.getElementById("receivedBy").value;
 
 // 🔴 اختبار سريع (إذا لم يظهر فالمشكلة في الزر)
-alert("زر الإرجاع يعمل");
+alert(civil);
   
 fetch(API_URL,{
 method:"POST",
