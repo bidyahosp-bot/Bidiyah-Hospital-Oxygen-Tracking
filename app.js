@@ -73,6 +73,9 @@ let civil = document.getElementById("civilSearch").value;
 let returnDate = document.getElementById("returnDate").value;
 let receivedBy = document.getElementById("receivedBy").value;
 
+// 🔴 اختبار سريع (إذا لم يظهر فالمشكلة في الزر)
+alert("زر الإرجاع يعمل");
+  
 fetch(API_URL,{
 method:"POST",
 mode:"no-cors",
