@@ -73,17 +73,25 @@ let civil = document.getElementById("civilSearch").value;
 let returnDate = document.getElementById("returnDate").value;
 let receivedBy = document.getElementById("receivedBy").value;
 
-let device = devices.find(d=>d.civil===civil);
-
-if(device){
-
-device.returnDate=returnDate;
-device.receivedBy=receivedBy;
-device.status="Returned";
-
-}
-
-renderTable();
+fetch(API_URL,{
+method:"POST",
+mode:"no-cors",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+action:"return",   // 🔥 مهم
+civilId:civil,
+receivedBy:receivedBy,
+returnDate:returnDate
+})
+})
+.then(()=>{
+loadRecords();
+})
+.catch(err=>{
+console.log(err);
+});
 
 }
 
