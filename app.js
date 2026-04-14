@@ -47,6 +47,7 @@ let deliverDate = document.getElementById("deliverDate").value;
 
 fetch(API_URL,{
 method:"POST",
+mode:"no-cors",   // 🔥 هذا أهم سطر
 headers:{
 "Content-Type":"application/json"
 },
@@ -58,13 +59,11 @@ sentBy:sentBy,
 deliverDate:deliverDate
 })
 })
-.then(res=>res.text())
-.then(res=>{
+.then(()=>{
 loadRecords();
 })
 .catch(err=>{
 console.log(err);
-alert("Error sending data");
 });
 
 }
