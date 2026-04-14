@@ -1,4 +1,4 @@
-const API_URL="https://script.google.com/macros/s/AKfycbz6-BoX9yVXRfupfLQdfPU0A7WWQ_jiTDuANemotZi9NRxn5ijx2HKsc4nc_GBV38Fh/exec";
+const API_URL="https://script.google.com/macros/s/AKfycbyumFj3PT_Y1ZuIfisfQD04Jlc-v9JrfJGNNYJfz5LHyhH9UQ3tWgkBmyLj7yrdG5Sw/exec";
 
 let devices=[];
 
