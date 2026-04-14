@@ -73,23 +73,16 @@ let civil = document.getElementById("civilSearch").value;
 let returnDate = document.getElementById("returnDate").value;
 let receivedBy = document.getElementById("receivedBy").value;
 
-// 🔴 اختبار سريع (إذا لم يظهر فالمشكلة في الزر)
-alert(civil);
-  
-fetch(API_URL,{
-method:"POST",
-mode:"no-cors",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-action:"return",   // 🔥 مهم
-civilId:civil,
-receivedBy:receivedBy,
-returnDate:returnDate
-})
-})
-.then(()=>{
+let url = API_URL +
+"?action=return" +
+"&civilId=" + encodeURIComponent(civil) +
+"&receivedBy=" + encodeURIComponent(receivedBy) +
+"&returnDate=" + encodeURIComponent(returnDate);
+
+// إرسال GET بدل POST
+fetch(url)
+.then(res=>res.text())
+.then(res=>{
 loadRecords();
 })
 .catch(err=>{
