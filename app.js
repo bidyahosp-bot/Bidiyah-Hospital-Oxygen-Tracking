@@ -73,13 +73,13 @@ let civil = document.getElementById("civilSearch").value;
 let returnDate = document.getElementById("returnDate").value;
 let receivedBy = document.getElementById("receivedBy").value;
 
+// 🔴 هذا أهم تعديل (GET URL)
 let url = API_URL +
 "?action=return" +
 "&civilId=" + encodeURIComponent(civil) +
 "&receivedBy=" + encodeURIComponent(receivedBy) +
 "&returnDate=" + encodeURIComponent(returnDate);
 
-// إرسال GET بدل POST
 fetch(url)
 .then(res=>res.text())
 .then(res=>{
@@ -90,7 +90,6 @@ console.log(err);
 });
 
 }
-
 function getStatusText(status){
 
 if(status==="With Patient")
