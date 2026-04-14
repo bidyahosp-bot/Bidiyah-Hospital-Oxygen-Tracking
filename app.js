@@ -3,9 +3,7 @@ const API_URL="https://script.google.com/macros/s/AKfycbz6-BoX9yVXRfupfLQdfPU0A7
 let devices=[];
 
 window.onload=function(){
-
 loadRecords();
-
 };
 
 function loadRecords(){
@@ -20,15 +18,14 @@ data.forEach(r=>{
 
 devices.push({
 
-id:r[0],
-patient:r[1],
-civil:r[2],
-phone:r[3],
-sentBy:r[4],
-receivedBy:r[5],
-deliverDate:r[6],
-returnDate:r[7],
-status:r[8]
+patient:r[0],
+civil:r[1],
+phone:r[2],
+sentBy:r[3],
+receivedBy:r[4],
+deliverDate:r[5],
+returnDate:r[6],
+status:r[7]
 
 });
 
@@ -42,45 +39,31 @@ renderTable();
 
 function deliverDevice(){
 
-let device={
-
-id:deviceId.value,
-patient:patientName.value,
-civil:civilId.value,
-phone:phone.value,
-sentBy:sentBy.value,
-receivedBy:"",
-deliverDate:deliverDate.value,
-returnDate:"",
-status:"With Patient"
-
-};
-
 fetch(API_URL,{
 method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
 body:JSON.stringify({
-deviceId:device.id,
-patientName:device.patient,
-civilId:device.civil,
-phone:device.phone,
-sentBy:device.sentBy,
-deliverDate:device.deliverDate
+patientName:patientName.value,
+civilId:civilId.value,
+phone:phone.value,
+sentBy:sentBy.value,
+deliverDate:deliverDate.value
 })
 })
 .then(res=>res.text())
 .then(res=>{
-
 loadRecords();
-
 });
 
 }
 
 function returnDevice(){
 
-let id=returnDeviceId.value;
+let civil=civilSearch.value;
 
-let device=devices.find(d=>d.id===id);
+let device=devices.find(d=>d.civil===civil);
 
 if(device){
 
@@ -144,7 +127,6 @@ row.classList.add("overdue");
 
 row.innerHTML=`
 
-<td>${d.id}</td>
 <td>${d.patient}</td>
 <td>${d.civil}</td>
 <td>${d.phone}</td>
