@@ -39,36 +39,47 @@ renderTable();
 
 function deliverDevice(){
 
+let patientName = document.getElementById("patientName").value;
+let civilId = document.getElementById("civilId").value;
+let phone = document.getElementById("phone").value;
+let sentBy = document.getElementById("sentBy").value;
+let deliverDate = document.getElementById("deliverDate").value;
+
 fetch(API_URL,{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
 body:JSON.stringify({
-patientName:patientName.value,
-civilId:civilId.value,
-phone:phone.value,
-sentBy:sentBy.value,
-deliverDate:deliverDate.value
+patientName:patientName,
+civilId:civilId,
+phone:phone,
+sentBy:sentBy,
+deliverDate:deliverDate
 })
 })
 .then(res=>res.text())
 .then(res=>{
 loadRecords();
+})
+.catch(err=>{
+console.log(err);
+alert("Error sending data");
 });
 
 }
-
 function returnDevice(){
 
-let civil=civilSearch.value;
+let civil = document.getElementById("civilSearch").value;
+let returnDate = document.getElementById("returnDate").value;
+let receivedBy = document.getElementById("receivedBy").value;
 
-let device=devices.find(d=>d.civil===civil);
+let device = devices.find(d=>d.civil===civil);
 
 if(device){
 
-device.returnDate=returnDate.value;
-device.receivedBy=receivedBy.value;
+device.returnDate=returnDate;
+device.receivedBy=receivedBy;
 device.status="Returned";
 
 }
